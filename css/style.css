@@ -160,10 +160,12 @@ p {
     background: rgba(255, 107, 107, 0.1);
 }
 
-.sum-display {
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-top: 0.5rem;
+.player-side h3 {
+    color: #4dabf7;
+}
+
+.house-side h3 {
+    color: #ff6b6b;
 }
 
 /* Controls */
