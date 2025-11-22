@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambling Experiment</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <!-- SETUP VIEW -->
+        <div id="setup-view" class="view">
+            <h1>Gambling Experiment</h1>
+            <p>Welcome. Please click Start to begin.</p>
+            <button id="btn-start-exp" class="primary-btn">Start Experiment</button>
+        </div>
+
+        <!-- INSTRUCTIONS VIEW -->
+        <div id="instructions-view" class="view">
+            <h2>Instructions</h2>
+            <p>You will play a dice game against the House.</p>
+            <p>Each trial has 3 stages. In each stage, you and the House both roll a die.</p>
+            <p>Goal: Have a higher total sum than the House after 3 stages.</p>
+            <p><strong>Ties are losses for you.</strong></p>
+            <button id="btn-start-first-trial" class="primary-btn">I Understand</button>
+        </div>
+
+        <!-- GAME VIEW -->
+        <div id="game-view" class="view">
+            <header class="game-header">
+                <div class="stat-box">Trial: <span id="trial-num">1</span>/10</div>
+                <div class="stat-box">Stage: <span id="stage-num">1</span>/3</div>
+                <div class="stat-box">Wealth: <span id="wealth-display">500</span></div>
+                <div class="stat-box">Bet: <span id="bet-display">20</span></div>
+            </header>
+
+            <div class="dice-arena">
+                <div class="side player-side">
+                    <h3>Player (Blue)</h3>
+                    <div id="player-dice-container" class="dice-container"></div>
+                    <div class="sum-display">Sum: <span id="player-sum">0</span></div>
+                </div>
+                <div class="side house-side">
+                    <h3>House (Red)</h3>
+                    <div id="house-dice-container" class="dice-container"></div>
+                    <div class="sum-display">Sum: <span id="house-sum">0</span></div>
+                </div>
+            </div>
+
+            <div id="info-controls" class="control-panel">
+                <p>Rolling...</p>
+                <!-- Auto-advance, no button needed -->
+            </div>
+
+            <div id="action-controls" class="control-panel hidden">
+                <p>Choose your action:</p>
+                <div class="action-buttons">
+                    <button id="btn-retract" class="action-btn">Retract (-10) [A]</button>
+                    <button id="btn-hold" class="action-btn">Hold (0) [S]</button>
+                    <button id="btn-add" class="action-btn">Add (+10) [D]</button>
+                </div>
+            </div>
+
+            <div id="belief-controls" class="control-panel hidden">
+                <p>What is the probability (0-100%) that you will WIN?</p>
+                <p class="key-hint" style="font-size: 0.9rem; color: #888;">[A] -5% | [D] +5%</p>
+                <input type="range" id="belief-slider" min="0" max="100" value="50">
+                <span id="belief-value">50%</span>
+                <button id="btn-submit-belief" class="primary-btn">Submit [S]</button>
+            </div>
+        </div>
+
+        <!-- RESULT VIEW -->
+        <div id="result-view" class="view">
+            <h2 id="result-title">WIN</h2>
+            <p id="result-message">You won 40!</p>
+            <button id="btn-next-trial" class="primary-btn">Next Trial [S]</button>
+        </div>
+
+        <!-- BLOCK BREAK VIEW -->
+        <div id="block-break-view" class="view">
+            <h2>Break Time</h2>
+            <p>You have completed a block of trials.</p>
+            <p>Take a short break if needed.</p>
+            <button id="btn-resume-block" class="primary-btn">Resume</button>
+        </div>
+
+        <!-- END VIEW -->
+        <div id="end-view" class="view">
+            <h2>Experiment Complete</h2>
+            <p>Thank you for participating.</p>
+            <button id="btn-download-data" class="primary-btn">Download Data</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/math.js"></script>
+    <script src="js/logger.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
