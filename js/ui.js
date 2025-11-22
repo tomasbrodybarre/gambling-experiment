@@ -80,8 +80,14 @@ const UI = {
 
         // End / Download
         // End / Download
-        document.getElementById('btn-download-data').addEventListener('click', () => {
+        document.getElementById('btn-download-data').addEventListener('click', (e) => {
             Logger.exportToCSV();
+            e.target.style.display = 'none';
+            const msg = document.createElement('p');
+            msg.textContent = "Session Ended. You may close this window.";
+            msg.style.color = "#888";
+            msg.style.marginTop = "1rem";
+            e.target.parentNode.appendChild(msg);
             window.close();
         });
 

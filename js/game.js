@@ -13,7 +13,7 @@ class GameSession {
         this.nStages = config.nStages || 3;
         this.diceSides = config.diceSides || 6;
         this.startingBias = config.startingBias || 0;
-        this.blockSize = 10;
+        this.blockSize = 100;
 
         this.trials = [];
         this.currentTrialIndex = 0;
