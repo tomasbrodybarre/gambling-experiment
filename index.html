@@ -37,7 +37,8 @@
             <p>After you have made your choice you and the house each roll a dice. The numbers you roll are added to
                 your respective totals. If you have a <strong>higher dice sum</strong> at the end of the trial
                 <strong>you get paid twice your bet</strong>. If the house has a <strong>higher or equal dice
-                    sum</strong> you <strong>lose the betting amount</strong>.</p>
+                    sum</strong> you <strong>lose the betting amount</strong>.
+            </p>
             <button id="btn-instructions-next-1" class="primary-btn">Next</button>
         </div>
         <!-- INSTRUCTIONS VIEW 2 -->
@@ -84,12 +85,14 @@
             <ul
                 style="text-align: left; display: inline-block; margin-top: 0; margin-bottom: 1rem; font-size: 0.9rem; padding-left: 1.2rem;">
                 <li>You win big (600 points) but guess randomly (50% accuracy): You take home (600 * 0.5)/100 =
-                    <strong>$3 bonus</strong> + $3 base pay for <strong>$6 in total</strong>.</li>
+                    <strong>$3 bonus</strong> + $3 base pay for <strong>$6 in total</strong>.
+                </li>
                 <li>You win big (600 points) and predict your wins/losses well (90% accuracy): You take home (600 *
                     0.9)/100 = <strong>$5.40 bonus</strong> + $3 base pay for <strong>$8.40 in total</strong>.</li>
                 <li>You win big (600 points) but lie about your confidence (saying 100% when it was risky), resulting in
                     10% accuracy: You take home (600 * 0.1)/100 = <strong>$0.60 bonus</strong> + $3 base pay for
-                    <strong>$3.60 in total</strong>.</li>
+                    <strong>$3.60 in total</strong>.
+                </li>
             </ul>
 
             <p><strong>Bottom Line:</strong> To make the most money, play smart to build your bank, but be brutally
@@ -143,10 +146,22 @@
         <!-- END VIEW -->
         <div id="end-view" class="view">
             <h2>Experiment Complete</h2>
-            <p id="end-raw-wealth"></p>
-            <p id="end-accuracy-score"></p>
-            <p id="end-formula"></p>
-            <p id="end-total-payout"></p>
+            <p>Thank you for participating!</p>
+
+            <div class="result-box"
+                style="background: #2a2a2a; padding: 1.5rem; border-radius: 8px; margin: 1.5rem 0; text-align: left;">
+                <p><strong>Final Wealth:</strong> <span id="end-wealth">0</span> Points</p>
+                <p><strong>Average Accuracy Score:</strong> <span id="end-mean-accuracy">0.00</span></p>
+                <hr style="border-color: #444; margin: 1rem 0;">
+                <p><strong>Performance Reward:</strong></p>
+                <p id="end-reward-calc" style="font-family: monospace; color: #aaa; font-size: 0.9rem;">(0 * 0.00) / 100
+                    = $0.00</p>
+                <p><strong>Base Pay:</strong> $3.00</p>
+                <hr style="border-color: #444; margin: 1rem 0;">
+                <p style="font-size: 1.2rem;"><strong>Total Payment:</strong> <span id="end-total-payment"
+                        style="color: #4CAF50;">$3.00</span></p>
+            </div>
+
             <button id="btn-download-data" class="primary-btn">Download Data</button>
         </div>
     </div>

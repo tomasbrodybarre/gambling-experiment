@@ -12,5 +12,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Initialize UI with game instance
-    UI.init(game);
+    try {
+        UI.init(game);
+        console.log("UI Initialized");
+    } catch (e) {
+        console.error("UI Initialization Failed:", e);
+    }
 });

@@ -45,7 +45,13 @@ const UI = {
 
             // Result
             resultTitle: document.getElementById('result-title'),
-            resultMessage: document.getElementById('result-message')
+            resultMessage: document.getElementById('result-message'),
+
+            // End Screen
+            endWealth: document.getElementById('end-wealth'),
+            endMeanAccuracy: document.getElementById('end-mean-accuracy'),
+            endRewardCalc: document.getElementById('end-reward-calc'),
+            endTotalPayment: document.getElementById('end-total-payment')
         };
     },
 
@@ -151,7 +157,9 @@ const UI = {
 
     render() {
         // Hide all views
-        Object.values(this.views).forEach(el => el.classList.remove('active'));
+        Object.values(this.views).forEach(el => {
+            if (el) el.classList.remove('active');
+        });
 
         // Show current view based on game state
         switch (this.game.state) {
@@ -174,6 +182,17 @@ const UI = {
 
             case 'END':
                 this.views.end.classList.add('active');
+                if (this.game.finalStats) {
+                    const stats = this.game.finalStats;
+                    this.el.endWealth.textContent = stats.finalWealth;
+                    this.el.endMeanAccuracy.textContent = stats.meanAccuracy.toFixed(2);
+
+                    // Formula: (Wealth * Accuracy) / 100 = Reward
+                    const formulaStr = `(${stats.finalWealth} * ${stats.meanAccuracy.toFixed(2)}) / 100 = $${stats.performanceReward.toFixed(2)}`;
+                    this.el.endRewardCalc.textContent = formulaStr;
+
+                    this.el.endTotalPayment.textContent = '$' + stats.totalPayment.toFixed(2);
+                }
                 break;
         }
     },
