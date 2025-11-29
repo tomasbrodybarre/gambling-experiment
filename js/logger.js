@@ -45,18 +45,21 @@ const Logger = {
                     brier_score: step.brier_score,
                     accuracy_score: step.accuracy_score,
 
-                    // Final stats (will be undefined until the end, or we can just append them to every row if available)
-                    // For simplicity, we'll leave them blank or add them if we pass the game object.
-                    // Actually, the prompt implies adding them to the CSV. 
-                    // Let's add them to the row if they exist on the trial object (which we might need to attach).
-                    // A better approach: The user wants these values in the output. 
-                    // Since Logger.trials is just a list of trial data, we don't have global stats here easily unless we pass them.
-                    // However, we can calculate the mean accuracy from the rows if needed.
-                    // But the request says "Store these values in the csv output".
-                    // I'll add columns for them.
-                    performance_reward: trial.performance_reward, // We need to add this to trialData in game.js
-                    total_payment: trial.total_payment // We need to add this to trialData in game.js
+                    performance_reward: trial.performance_reward,
+                    total_payment: trial.total_payment,
+                    mean_accuracy: trial.mean_accuracy,
+
+                    // Questionnaire Data
+                    Questionnaire_Total: trial.questionnaire ? trial.questionnaire.totalScore : '',
                 };
+
+                // Add individual questions
+                if (trial.questionnaire && trial.questionnaire.answers) {
+                    trial.questionnaire.answers.forEach((ans, idx) => {
+                        row[`Q${idx + 1}`] = ans;
+                    });
+                }
+
                 rows.push(row);
             });
         });

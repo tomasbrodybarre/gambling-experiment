@@ -261,6 +261,202 @@ p {
         transform: translate(0, 0) rotate(0deg);
     }
 
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    margin-top: 1rem;
+}
+
+.primary-btn:hover {
+    background-color: #9965f4;
+}
+
+/* Game Header */
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    background: #2c2c2c;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    font-weight: 600;
+    border: 1px solid #333;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    font-size: 1.2rem;
+    /* Unified size */
+    color: #bb86fc;
+    /* Unified purple color */
+}
+
+.stat-box span {
+    font-size: 1.2rem;
+    /* Ensure span matches */
+    color: #bb86fc;
+}
+
+/* Dice Arena */
+.dice-arena {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+
+.side {
+    flex: 1;
+    padding: 1rem;
+    background: #252525;
+    border-radius: 8px;
+    margin: 0 10px;
+}
+
+.dice-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    min-height: 60px;
+    margin: 1rem 0;
+}
+
+.die {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.player-side .die {
+    border-color: #4dabf7;
+    /* Light Blue */
+    color: #4dabf7;
+    background: rgba(77, 171, 247, 0.1);
+}
+
+.house-side .die {
+    border-color: #ff6b6b;
+    /* Light Red */
+    color: #ff6b6b;
+    background: rgba(255, 107, 107, 0.1);
+}
+
+.player-side h3 {
+    color: #4dabf7;
+}
+
+.house-side h3 {
+    color: #ff6b6b;
+}
+
+/* Controls */
+.control-panel {
+    background: #2c2c2c;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #333;
+    margin-top: 1rem;
+}
+
+.control-panel.hidden {
+    display: none;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.action-btn {
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #333;
+    color: #fff;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: #444;
+    transform: translateY(-2px);
+    border-color: #777;
+}
+
+#belief-slider {
+    width: 100%;
+    max-width: 300px;
+    margin: 1rem 0;
+    accent-color: #bb86fc;
+}
+
+#belief-value {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-left: 10px;
+    color: #bb86fc;
+}
+
+/* Result Styles */
+#result-title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#result-message {
+    font-size: 1.2rem;
+    color: #aaa;
+}
+
+/* Animation Styles - Placed at end for specificity */
+.side .die.animating {
+    background: #444;
+    /* Keep dark background for contrast */
+    animation: shake 0.1s infinite;
+    transform-origin: center;
+}
+
+.player-side .die.animating {
+    border-color: #4dabf7;
+    color: #4dabf7;
+}
+
+.house-side .die.animating {
+    border-color: #ff6b6b;
+    color: #ff6b6b;
+}
+
+@keyframes shake {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
+    25% {
+        transform: translate(2px, 2px) rotate(15deg);
+    }
+
+    50% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+
     75% {
         transform: translate(-2px, -2px) rotate(-15deg);
     }
@@ -268,4 +464,30 @@ p {
     100% {
         transform: translate(0, 0) rotate(0deg);
     }
+}
+
+/* Questionnaire Styles */
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.option-btn {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 15px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.option-btn:hover {
+    background-color: #444;
+    border-color: #bb86fc;
+    transform: translateY(-2px);
 }

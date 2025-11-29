@@ -11,6 +11,28 @@
 
 <body>
     <div id="app">
+        <!-- WELCOME VIEW -->
+        <div id="welcome-view" class="view active">
+            <h2>Welcome</h2>
+            <p>Welcome, in this experiment you will respond to a brief questionnaire and then play a game. How well you
+                play the game will impact your final payment.</p>
+            <button id="btn-welcome-start" class="primary-btn">Start</button>
+        </div>
+
+        <!-- QUESTIONNAIRE VIEW -->
+        <div id="questionnaire-view" class="view">
+            <h2>Questionnaire</h2>
+            <p id="question-text" style="font-size: 1.2rem; margin-bottom: 2rem;"></p>
+            <div id="question-options" class="options-container">
+                <!-- Buttons will be injected here -->
+                <button class="option-btn" data-value="0">Never</button>
+                <button class="option-btn" data-value="1">Sometimes</button>
+                <button class="option-btn" data-value="2">Most of the time</button>
+                <button class="option-btn" data-value="3">Always</button>
+            </div>
+            <p id="question-progress" style="margin-top: 2rem; color: #888;">Question 1 of 9</p>
+        </div>
+
         <!-- INSTRUCTIONS VIEW 1 -->
         <div id="instructions-view-1" class="view">
             <h2>Gambling Game</h2>

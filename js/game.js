@@ -20,9 +20,27 @@ class GameSession {
         this.wealth = this.startWealth;
 
         // State
-        this.state = 'INSTRUCTIONS';
+        this.state = 'WELCOME';
         // Possible States:
-        // SETUP, INSTRUCTIONS, TRIAL_START, STAGE_INFO, STAGE_ACTION, STAGE_BELIEF, STAGE_RESULT, TRIAL_END, BLOCK_BREAK, END
+        // WELCOME, QUESTIONNAIRE, INSTRUCTIONS, TRIAL_START, STAGE_INFO, STAGE_ACTION, STAGE_BELIEF, STAGE_RESULT, TRIAL_END, BLOCK_BREAK, END
+
+        // Questionnaire Data
+        this.questionnaireData = {
+            answers: [],
+            totalScore: 0
+        };
+        this.currentQuestionIndex = 0;
+        this.questions = [
+            "Have you bet more than you could really afford to lose?",
+            "Have you needed to gamble with larger amounts to get the same feeling of excitement?",
+            "When you gambled, did you go back another day to try to win back the money you lost?",
+            "Have you borrowed money or sold anything to get money to gamble?",
+            "Have you felt you might have a problem with gambling?",
+            "Has gambling caused you any health problems, including stess or anxiety?",
+            "Have people criticised your betting or told you that you had a gambling problem, regardless of whether or not you thought it was true?",
+            "Has your gambling caused any financial problems for you or your household?",
+            "Have you felt guilty about the way you gamble or what happens when you gamble?"
+        ];
 
         // Current Trial Data
         this.currentTrial = null;
@@ -47,7 +65,28 @@ class GameSession {
     }
 
     start() {
-        this.state = 'INSTRUCTIONS';
+        this.state = 'WELCOME';
+        UI.render();
+    }
+
+    startQuestionnaire() {
+        this.state = 'QUESTIONNAIRE';
+        this.currentQuestionIndex = 0;
+        UI.render();
+    }
+
+    handleQuestionnaireAnswer(answerValue) {
+        // answerValue is 0, 1, 2, 3
+        const val = parseInt(answerValue);
+        this.questionnaireData.answers.push(val);
+        this.questionnaireData.totalScore += val;
+
+        this.currentQuestionIndex++;
+
+        if (this.currentQuestionIndex >= this.questions.length) {
+            // Questionnaire complete
+            this.state = 'INSTRUCTIONS';
+        }
         UI.render();
     }
 
@@ -246,7 +285,8 @@ class GameSession {
             outcome: outcome,
             wealth_start: this.currentTrial.history[0].wealth_available + this.ante, // Approx
             wealth_end: this.wealth,
-            history: this.currentTrial.history
+            history: this.currentTrial.history,
+            questionnaire: this.questionnaireData // Attach questionnaire data
         };
 
         Logger.logTrial(trialData);

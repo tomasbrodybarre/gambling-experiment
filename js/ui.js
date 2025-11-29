@@ -15,6 +15,8 @@ const UI = {
 
     cacheDOM() {
         this.views = {
+            welcome: document.getElementById('welcome-view'),
+            questionnaire: document.getElementById('questionnaire-view'),
             instructions1: document.getElementById('instructions-view-1'),
             instructions2: document.getElementById('instructions-view-2'),
             instructions3: document.getElementById('instructions-view-3'),
@@ -23,8 +25,12 @@ const UI = {
             end: document.getElementById('end-view')
         };
 
-        // Game Elements
+        // Questionnaire Elements
         this.el = {
+            questionText: document.getElementById('question-text'),
+            questionProgress: document.getElementById('question-progress'),
+            questionOptions: document.querySelectorAll('.option-btn'),
+
             trialNum: document.getElementById('trial-num'),
             stageNum: document.getElementById('stage-num'),
             wealth: document.getElementById('wealth-display'),
@@ -56,6 +62,17 @@ const UI = {
     },
 
     bindEvents() {
+        // Welcome
+        document.getElementById('btn-welcome-start').addEventListener('click', () => this.game.startQuestionnaire());
+
+        // Questionnaire
+        this.el.questionOptions.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const val = e.target.dataset.value;
+                this.game.handleQuestionnaireAnswer(val);
+            });
+        });
+
         // Instructions Navigation
         document.getElementById('btn-instructions-next-1').addEventListener('click', () => this.showInstructions(2));
         document.getElementById('btn-instructions-next-2').addEventListener('click', () => this.showInstructions(3));
@@ -163,6 +180,15 @@ const UI = {
 
         // Show current view based on game state
         switch (this.game.state) {
+            case 'WELCOME':
+                if (this.views.welcome) this.views.welcome.classList.add('active');
+                break;
+            case 'QUESTIONNAIRE':
+                if (this.views.questionnaire) {
+                    this.views.questionnaire.classList.add('active');
+                    this.renderQuestionnaire();
+                }
+                break;
             case 'INSTRUCTIONS':
                 if (this.views.instructions1) {
                     this.views.instructions1.classList.add('active');
@@ -195,6 +221,14 @@ const UI = {
                 }
                 break;
         }
+    },
+
+    renderQuestionnaire() {
+        const qIndex = this.game.currentQuestionIndex;
+        const qText = this.game.questions[qIndex];
+
+        this.el.questionText.textContent = qText;
+        this.el.questionProgress.textContent = `Question ${qIndex + 1} of ${this.game.questions.length}`;
     },
 
     renderGame() {
