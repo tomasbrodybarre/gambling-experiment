@@ -5,6 +5,7 @@ To investigate the cognitive and economic dynamics of decision-making under unfo
 
 ## Task Mechanics
 - **Structure**: A sequential "Player vs. House" dice accumulation game.
+- **Pre-Experiment**: The Canadian Problem Gambling Index (CPGI) questionnaire (Ferris & Wynne, 2001).
 - **Stimuli**: Two 6-sided dice (one for Player, one for House).
 - **State Space**: Information is displayed as the Cumulative Sum of all rolls to date.
 - **Trial Structure**: Fixed horizon of 3 stages per trial.
@@ -12,12 +13,20 @@ To investigate the cognitive and economic dynamics of decision-making under unfo
 - **Payout Structure**: Base payment of $3.00 + performance-based bonus tied to wealth and accuracy.
 
 ## Trial Progression
-Each trial follows a strictly defined sequence:
+Each session follows a strictly defined sequence:
 
-1. **Initialization (The Ante)**:
+1. **Welcome & Questionnaire**:
+   - Participant sees a welcome screen.
+   - Participant completes the 9-item Canadian Problem Gambling Index (CPGI).
+   - Responses are recorded (0-3 scale) and a total score is calculated.
+
+2. **Instructions**:
+   - Three screens explaining the game rules, accuracy scoring, and payout formula.
+
+3. **Initialization (The Ante)**:
    - The Player is automatically "opted in" with a mandatory 15-point Ante, immediately deducted from wealth and added to the current bet.
 
-2. **Sequential Stages (t = 1 to 3)**:
+4. **Sequential Stages (t = 1 to 3)**:
    For each stage:
    - **Action Phase**: Player adjusts their stake. Incremental changes are constrained to:
      - **Add**: Increase bet by 5 points (deducted immediately).
@@ -26,7 +35,7 @@ Each trial follows a strictly defined sequence:
    - **Belief Elicitation**: Player reports subjective P(Win) on a 0–100% scale.
    - **Information Phase**: Dice are rolled and displayed. Cumulative sums update ($S_{Player}$ vs. $S_{House}$).
 
-3. **Resolution**:
+5. **Resolution**:
    - If $S_{Player} > S_{House}$: Player wins 2× Final Bet.
    - If $S_{Player} \leq S_{House}$: Player loses Final Bet (already deducted).
    - Wealth is updated with winnings only (losses were deducted incrementally).
@@ -65,6 +74,7 @@ At experiment completion:
 - **Inertia Effects**: Do gains and losses in preceding trials impact current betting behavior?
 - **Loss Aversion**: What objective and subjective win probabilities are required for players to increase bets?
 - **Bayesian Optimality**: How closely do human subjective probabilities match Bayes-optimal probabilities?
+- **Problem Gambling Severity**: How does CPGI score correlate with risk-taking and calibration?
 
 ## Technical Details
 
@@ -74,18 +84,19 @@ At experiment completion:
 - **JavaScript (ES6+)**: Game logic, Brier scoring, and DOM manipulation.
 
 ### Project Structure
-- `index.html`: Main entry point with three instruction screens and game interface.
+- `index.html`: Main entry point with Welcome, Questionnaire, Instructions, and Game interfaces.
 - `css/`:
   - `style.css`: All visual styling with dark theme and dice animations.
 - `js/`:
   - `main.js`: Application entry point and initialization.
-  - `game.js`: Core game loop, state management, and Brier score calculation.
+  - `game.js`: Core game loop, state management, questionnaire logic, and Brier score calculation.
   - `ui.js`: DOM updates, event handling, and dice animations.
   - `math.js`: Bayesian probability calculations and Brier scoring functions.
   - `logger.js`: Data logging and CSV export with full trial history.
 
 ### Data Output
 The experiment logs comprehensive data including:
+- **Questionnaire**: Individual CPGI item responses (Q1-Q9) and Total Score.
 - Trial-by-trial outcomes and wealth changes.
 - Stage-by-stage actions, beliefs, and dice rolls.
 - Ground-truth probabilities (Bayesian optimal).
@@ -95,9 +106,10 @@ The experiment logs comprehensive data including:
 ### Usage
 1. Clone the repository.
 2. Open `index.html` in a modern web browser.
-3. Read through the three instruction screens.
-4. Complete 10 trials of the dice game.
-5. Review payout breakdown and download CSV data.
+3. Complete the Welcome screen and Questionnaire.
+4. Read through the three instruction screens.
+5. Complete 10 trials of the dice game.
+6. Review payout breakdown and download CSV data.
 
 ## Design Rationale
 This task bridges behavioral economics and metacognition research by:
